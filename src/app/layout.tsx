@@ -35,9 +35,7 @@ export default function RootLayout({
           </>
         )}
       </head>
-      <body className={`${font.className} antialiased`}>
-        {children}
-      </body>
+      <body className={`${font.className} antialiased`}>{children}</body>
     </html>
   );
 }

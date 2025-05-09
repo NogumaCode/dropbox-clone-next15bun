@@ -34,7 +34,6 @@ export const files = pgTable("files", {
 
 // ファイル（またはフォルダ）テーブルに対するリレーション定義
 export const filesRelations = relations(files, ({ one, many }) => ({
-
   // --- 親フォルダとのリレーション ---
   parent: one(files, {
     // このテーブルのどのカラムを使って親を探すのか → parentId が親のIDを保持している
@@ -48,5 +47,5 @@ export const filesRelations = relations(files, ({ one, many }) => ({
 }));
 
 //files テーブルに INSERT するときに必要な型」 を File という名前で定義
-export const File = typeof files.$inferInsert
-export const NewFile = typeof files.$inferInsert
+export const File = typeof files.$inferInsert;
+export const NewFile = typeof files.$inferInsert;
