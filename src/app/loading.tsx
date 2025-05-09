@@ -1,6 +1,4 @@
-
-import SpinnerModal from './../components/SpinnerModal';
-
+import SpinnerModal from "./../components/SpinnerModal";
 
 const loading = () => {
   return <SpinnerModal />;
