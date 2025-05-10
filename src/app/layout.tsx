@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Script from "next/script";
 import { Noto_Sans_JP } from "next/font/google";
+import { ClerkProvider } from "@clerk/nextjs";
+import { jaJP } from "@clerk/localizations";
 
 const font = Noto_Sans_JP({ subsets: ["latin"] });
 
@@ -16,26 +18,28 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja">
-      <head>
-        {process.env.NODE_ENV === "production" && (
-          <>
-            <Script
-              src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"
-              strategy="afterInteractive"
-            />
-            <Script id="ga-init" strategy="afterInteractive">
-              {`
+    <ClerkProvider localization={jaJP}>
+      <html lang="ja" className="dark">
+        <head>
+          {process.env.NODE_ENV === "production" && (
+            <>
+              <Script
+                src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"
+                strategy="afterInteractive"
+              />
+              <Script id="ga-init" strategy="afterInteractive">
+                {`
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
                 gtag('config', 'G-XXXXXXX');
               `}
-            </Script>
-          </>
-        )}
-      </head>
-      <body className={`${font.className} antialiased`}>{children}</body>
-    </html>
+              </Script>
+            </>
+          )}
+        </head>
+        <body className={`${font.className} antialiased`}>{children}</body>
+      </html>
+    </ClerkProvider>
   );
 }
