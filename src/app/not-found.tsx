@@ -1,9 +1,9 @@
 "use client";
-import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
+
+import { Button } from "@heroui/button";
+import Link from "next/link";
 
 export default function NotFound() {
-  const router = useRouter();
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 to-white px-4 py-10">
       <div className="text-center">
@@ -17,13 +17,14 @@ export default function NotFound() {
           申し訳ありません。このURLには何もありません。
         </p>
 
-        <Button
-          onClick={() => router.push("/")}
-          variant="default"
-          className="inline-flex items-center gap-2 bg-brand hover:bg-brand-100 text-white text-sm font-semibold px-5 py-2.5 rounded-sm shadow-lg hover:shadow-xl transition-all"
-        >
-          ホームへ戻る
-        </Button>
+        <Link href="/" passHref>
+          <Button
+            as="a" // Hero UI の Button はアンカータグとして動作
+            className="inline-flex items-center gap-2 bg-brand hover:bg-brand-100 text-white text-sm font-semibold px-5 py-2.5 rounded-sm shadow-lg hover:shadow-xl transition-all"
+          >
+            ホームへ戻る
+          </Button>
+        </Link>
       </div>
     </div>
   );

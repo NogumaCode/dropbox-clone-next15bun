@@ -4,17 +4,17 @@ export const signUpSchema = z
   .object({
     email: z
       .string()
-      .min(1, { message: "Email is required" })
-      .email({ message: "Please enter a valid email address" }),
+      .min(1, { message: "メールアドレスを入力してください。" })
+      .email({ message: "有効なメールアドレスを入力してください。" }),
     password: z
       .string()
-      .min(1, { message: "Password is required" })
-      .min(8, { message: "Password must be at least 8 characters" }),
+      .min(1, { message: "パスワードを入力してください。" })
+      .min(8, { message: "パスワードは8文字以上で入力してください。" }),
     passwordConfirmation: z
       .string()
-      .min(1, { message: "Please confirm your password" }),
+      .min(1, { message: "確認用パスワードを入力してください。" }),
   })
   .refine((data) => data.password === data.passwordConfirmation, {
-    message: "Passwords do not match",
-    path: ["passwordConfirmation"],
+    message: "パスワードが一致しません。",
+    path: ["passwordConfirmation"], // エラー表示をこのフィールドに紐付け
   });
